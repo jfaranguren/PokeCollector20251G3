@@ -5,15 +5,20 @@ import model.Controller;
 
 public class Executable {
 
-    private static Scanner input;
-    private static Controller control;
-
+    private Scanner input;
+    private Controller control;
+    
     public static void main(String[] args) {
-        initializer();
-        menu();
+        Executable exe = new Executable();
+        exe.menu();
     }
 
-    public static void menu(){
+    public Executable(){
+        input = new Scanner(System.in);
+        control = new Controller();
+    }
+
+    public void menu(){
 
         int opt = 0;
         do {
@@ -31,7 +36,7 @@ public class Executable {
                     askCardInformation();
                     break;
                 case 2:
-                    System.out.println();
+                    System.out.println(control.getAllCardsInfo());
                     break;
                 case 3:
                     
@@ -48,12 +53,7 @@ public class Executable {
 
     }
 
-    public static void initializer(){
-        input = new Scanner(System.in);
-        control = new Controller();
-    }
-
-    public static void askCardInformation(){
+    public void askCardInformation(){
 
         System.out.println("Digite el nombre de la carta");
         String name = input.nextLine();

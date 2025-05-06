@@ -1,32 +1,40 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Controller {
 
-    private Card[] collection;
+    private ArrayList<Card> collection;
 
     public Controller(){
-        collection = new Card[1000];
-
-        Card nuevaCarta = new Card("Pikachu", 100, 60, "Electrico");
-        collection[0]=nuevaCarta; //Guardar carta
-
+        collection = new ArrayList<Card>();
+        testInfo();
     }
 
+    public void testInfo(){
+        Card nuevaCarta = new Card("Pikachu", 100, 60, "Electrico");
+        collection.add(nuevaCarta); //Guardar carta
+    }
     
     public boolean saveCard(String name, int hP, int aP, String type){
 
         Card newCard = new Card(name, hP, aP, type);
 
-        for (int index = 0; index < collection.length; index++) {
+        return collection.add(newCard);
+    }
 
-            if(collection[index]==null){
-            collection[index] = newCard;
-            return true;
-            }
-            
+    public String getAllCardsInfo(){
+
+        String list = "Las cartas registradas son: \n";
+
+        for (Card c: collection) {
+            list+=c.toString();
         }
 
-        return false;
+        return list;
+
     }
+
+
     
 }

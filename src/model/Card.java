@@ -31,7 +31,12 @@ public class Card {
         return healthPoints;
     }
 
-    
+    @Override
+    public String toString() {
+        return "[name=" + name + ", healthPoints=" + healthPoints + ", attackPower=" + attackPower + ", type="
+                + type + "]";
+    }
+       
 
     
 }
