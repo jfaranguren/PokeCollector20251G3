@@ -1,5 +1,6 @@
 package model;
 
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 
 public class Controller {
@@ -12,16 +13,51 @@ public class Controller {
     }
 
     public void testInfo(){
-        Card nuevaCarta = new Card("Pikachu", 100, 60, "Electrico");
+        Pokemon nuevaCarta = new Pokemon("Pikachu", 100, 60, Type.ELECTRICO);
         collection.add(nuevaCarta); //Guardar carta
     }
-    
-    public boolean saveCard(String name, int hP, int aP, String type){
 
-        Card newCard = new Card(name, hP, aP, type);
+    public Type calculateType(int selection){
+
+        //return Type.values()[selection-1];
+
+        Type temp = Type.AGUA;
+
+        switch (selection) {
+            case 1:
+                temp = Type.ELECTRICO;
+                break;
+            case 2:
+                temp = Type.PLANTA;
+                break;
+            case 3:
+                temp = Type.AGUA;
+                break;
+            case 4:
+                temp = Type.FUEGO;
+                break;
+            default:
+                temp = Type.AGUA;
+                break;
+        }
+
+        return temp;
+
+
+    }
+    
+
+    //String name, int healthPoints, int attackPower, Type type
+    
+    public boolean saveCard(String name, int hP, int aP, int type){
+
+        //Type t = calculateType(type);
+
+        Card newCard = new Pokemon(name, hP, aP, calculateType(type));
 
         return collection.add(newCard);
     }
+    
 
     public String getAllCardsInfo(){
 
