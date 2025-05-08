@@ -7,18 +7,18 @@ public class Executable {
 
     private Scanner input;
     private Controller control;
-    
+
     public static void main(String[] args) {
         Executable exe = new Executable();
         exe.menu();
     }
 
-    public Executable(){
+    public Executable() {
         input = new Scanner(System.in);
         control = new Controller();
     }
 
-    public void menu(){
+    public void menu() {
 
         int opt = 0;
         do {
@@ -33,13 +33,31 @@ public class Executable {
 
             switch (opt) {
                 case 1:
-                    askCardInformation();
+                    System.out.println("1. Registrar Pokemon");
+                    System.out.println("2. Registrar Entrenador");
+                    System.out.println("3. Registrar Energia");
+                    int registerOption = input.nextInt();
+                    switch (registerOption) {
+                        case 1:
+                            askPokemonInformation();
+                            break;
+                        case 2:
+                            askTrainerInformation();
+                            break;
+                        case 3:
+                            askEnergyInformation();
+                            break;
+                        default:
+                            System.out.println("Opcion invalida, volviendo al menu principal");
+                            break;
+                    }
+
                     break;
                 case 2:
                     System.out.println(control.getAllCardsInfo());
                     break;
                 case 3:
-                    
+
                     break;
 
                 default:
@@ -49,11 +67,11 @@ public class Executable {
 
         } while (opt != 0);
 
-
-
     }
 
-    public void askCardInformation(){
+    public void askPokemonInformation() {
+
+        input.nextLine();
 
         System.out.println("Digite el nombre de la carta");
         String name = input.nextLine();
@@ -64,21 +82,62 @@ public class Executable {
         System.out.println("Digite los puntos de ataque");
         int aP = input.nextInt();
 
-        input.nextLine(); //Limpieza del Buffer
-
+        System.out.println(control.getTypeList());
         System.out.println("Digite el tipo");
-        String type = input.nextLine();
+        int type = input.nextInt();
 
         boolean result = control.saveCard(name, hP, aP, type);
 
-        if(result){
+        if (result) {
             System.out.println("Tu carta ha sido guardada");
-        }else{
+        } else {
             System.out.println("Error, tu carta no ha sido guardada");
         }
 
     }
 
+    public void askTrainerInformation() {
 
-    
+        input.nextLine();
+
+        System.out.println("Digite el nombre de la carta");
+        String name = input.nextLine();
+
+        System.out.println("Digite la descripcion de la carta");
+        String description = input.nextLine();
+
+        System.out.println("Digite la restriccion de la carta");
+        String restriction = input.nextLine();
+
+        boolean result = control.saveCard(name, description, restriction);
+
+        if (result) {
+            System.out.println("Tu carta ha sido guardada");
+        } else {
+            System.out.println("Error, tu carta no ha sido guardada");
+        }
+
+    }
+
+    public void askEnergyInformation() {
+
+        input.nextLine();
+
+        System.out.println("Digite el nombre de la carta");
+        String name = input.nextLine();
+
+        System.out.println(control.getTypeList());
+        System.out.println("Digite el tipo");
+        int type = input.nextInt();
+
+        boolean result = control.saveCard(name, type);
+
+        if (result) {
+            System.out.println("Tu carta ha sido guardada");
+        } else {
+            System.out.println("Error, tu carta no ha sido guardada");
+        }
+
+    }
+
 }

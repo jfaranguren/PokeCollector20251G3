@@ -1,6 +1,5 @@
 package model;
 
-import java.time.temporal.Temporal;
 import java.util.ArrayList;
 
 public class Controller {
@@ -45,26 +44,47 @@ public class Controller {
 
 
     }
-    
 
-    //String name, int healthPoints, int attackPower, Type type
+    public String getTypeList(){
+
+        String list = "Los tipos registrados son:\n";
+
+        for(int i=0; i<Type.values().length;i++){
+
+            list+=""+(i+1)+". "+Type.values()[i]+"\n";
+
+        }
+
+        return list;
+
+
+    }
     
+    //Pokemon
     public boolean saveCard(String name, int hP, int aP, int type){
-
         //Type t = calculateType(type);
-
         Card newCard = new Pokemon(name, hP, aP, calculateType(type));
+        return collection.add(newCard);
+    }
 
+    //Trainer
+    public boolean saveCard(String name, String description, String restriction){
+        Card newCard = new Trainer(name, description, restriction);
+        return collection.add(newCard);
+    }
+
+    //Energy
+    public boolean saveCard(String name, int type){
+        Card newCard = new Energy(name, calculateType(type));
         return collection.add(newCard);
     }
     
-
     public String getAllCardsInfo(){
 
         String list = "Las cartas registradas son: \n";
 
         for (Card c: collection) {
-            list+=c.toString();
+            list+=c.toString()+"\n";
         }
 
         return list;
