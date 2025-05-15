@@ -1,6 +1,6 @@
 package model;
 
-public class Card{
+public abstract class Card{
 
     //Atributos
     private String name;

@@ -37,6 +37,7 @@ public class Pokemon extends Card {
         this.type = type;
     }
 
+    
     @Override
     public String toString() {
         return "Pokemon [healthPoints=" + healthPoints + ", attackPower=" + attackPower + ", type=" + type

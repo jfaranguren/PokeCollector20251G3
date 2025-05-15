@@ -27,7 +27,7 @@ public class Executable {
             System.out.println("Digite una opcion");
             System.out.println("1. Registrar carta");
             System.out.println("2. Mostrar listado de cartas");
-            System.out.println("3. Modificar carta");
+            System.out.println("3. Consultar informacion de una carta");
             System.out.println("0. Salir");
             opt = input.nextInt();
 
@@ -54,10 +54,10 @@ public class Executable {
 
                     break;
                 case 2:
-                    System.out.println(control.getAllCardsInfo());
+                    System.out.println(control.getAllCardsName());
                     break;
                 case 3:
-
+                    showCardInfo();
                     break;
 
                 default:
@@ -66,6 +66,17 @@ public class Executable {
             }
 
         } while (opt != 0);
+
+    }
+
+    public void showCardInfo(){
+
+        input.nextLine();
+
+        System.out.println("Digite el nombre de la carta");
+        String name = input.nextLine();
+
+        System.out.println(control.getCardInfo(name));
 
     }
 
