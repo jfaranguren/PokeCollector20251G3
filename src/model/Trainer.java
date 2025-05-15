@@ -33,6 +33,11 @@ public class Trainer extends Card {
                 + "]";
     }
 
+    @Override
+    public double calculatePrice() {
+        
+        return ;
+    }
     
     
 }

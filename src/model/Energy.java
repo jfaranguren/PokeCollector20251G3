@@ -22,6 +22,12 @@ public class Energy extends Card{
         return "Energy [type=" + type + ", getName()=" + getName() + "]";
     }
 
+    @Override
+    public double calculatePrice() {
+        
+        return 500;
+    }
+
     
     
 }
