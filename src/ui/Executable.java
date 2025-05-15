@@ -26,8 +26,8 @@ public class Executable {
             System.out.println("Bienvenido a PokeCollector");
             System.out.println("Digite una opcion");
             System.out.println("1. Registrar carta");
-            System.out.println("2. Mostrar listado de cartas");
-            System.out.println("3. Consultar informacion de una carta");
+            System.out.println("2. Mostrar listado de objetos de la coleccion");
+            System.out.println("3. Consultar informacion de un objeto de la coleccion");
             System.out.println("0. Salir");
             opt = input.nextInt();
 
@@ -54,7 +54,7 @@ public class Executable {
 
                     break;
                 case 2:
-                    System.out.println(control.getAllCardsName());
+                    System.out.println(control.getAllCollectablesName());
                     break;
                 case 3:
                     showCardInfo();
@@ -76,7 +76,7 @@ public class Executable {
         System.out.println("Digite el nombre de la carta");
         String name = input.nextLine();
 
-        System.out.println(control.getCardInfo(name));
+        System.out.println(control.getCollectableInfo(name));
 
     }
 

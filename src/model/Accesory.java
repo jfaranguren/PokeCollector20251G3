@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Accesory implements CalculatePrice{
+public abstract class Accesory implements Collectable{
     
     private String name;
 
@@ -8,6 +8,7 @@ public abstract class Accesory implements CalculatePrice{
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
     }

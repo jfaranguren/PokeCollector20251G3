@@ -4,7 +4,7 @@ public class Trainer extends Card {
 
     private String description;
     private String restriction;
-    
+
     public Trainer(String name, String description, String restriction) {
         super(name);
         this.description = description;
@@ -35,9 +35,8 @@ public class Trainer extends Card {
 
     @Override
     public double calculatePrice() {
-        
-        return ;
+
+        return 20 * (description.length() > restriction.length() ? description.length() : restriction.length());
     }
-    
-    
+
 }

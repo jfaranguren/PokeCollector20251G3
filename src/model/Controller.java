@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    private ArrayList<Card> collection;
+    private ArrayList<Collectable> collection;
 
     public Controller() {
-        collection = new ArrayList<Card>();
+        collection = new ArrayList<Collectable>();
         testInfo();
 
         
@@ -79,11 +79,11 @@ public class Controller {
         return collection.add(newCard);
     }
 
-    public String getAllCardsName() {
+    public String getAllCollectablesName() {
 
         String list = "Las cartas registradas son: \n";
 
-        for (Card c : collection) {
+        for (Collectable c : collection) {
             list += c.getName() + "\n";
         }
 
@@ -91,15 +91,15 @@ public class Controller {
 
     }
 
-    public String getCardInfo(String name) {
+    public String getCollectableInfo(String name) {
 
         String info = "";
 
-        for (Card card : collection) {
+        for (Collectable c : collection) {
 
-            if (card.getName().equals(name)) {
+            if (c.getName().equals(name)) {
 
-                info = card.toString();
+                info = c.toString();
             }
 
         }
@@ -114,18 +114,18 @@ public class Controller {
 
         int pkmnCount = 0, energyCount = 0, trainerCount = 0;
 
-        for (Card card : collection) {
+        for (Collectable c : collection) {
 
-            if (card instanceof Pokemon) {
+            if (c instanceof Pokemon) {
                 pkmnCount++;
                 // Pokemon temp = (Pokemon)card;
             }
 
-            if (card instanceof Energy) {
+            if (c instanceof Energy) {
                 energyCount++;
             }
 
-            if (card instanceof Trainer) {
+            if (c instanceof Trainer) {
                 trainerCount++;
             }
 
@@ -145,14 +145,14 @@ public class Controller {
         Trainer longestDescriptionTrainer = null;
         int longestDescription = 0;
 
-        for (Card card : collection) {
-            if (card instanceof Trainer) {
+        for (Collectable c : collection) {
+            if (c instanceof Trainer) {
 
-                Trainer temp = (Trainer) card; // Transformacion = Casting = Downcasting
+                Trainer temp = (Trainer) c; // Transformacion = Casting = Downcasting
                 String descTemp = temp.getDescription();
 
                 if (descTemp.length() > longestDescription) {
-                    longestDescriptionTrainer = (Trainer) card;
+                    longestDescriptionTrainer = (Trainer) c;
                 }
 
             }

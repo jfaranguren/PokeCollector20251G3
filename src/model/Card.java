@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Card implements CalculatePrice{
+public abstract class Card implements Collectable{
 
     //Atributos
     private String name;
@@ -13,6 +13,7 @@ public abstract class Card implements CalculatePrice{
         name = newName;
     }
 
+    @Override
     public String getName(){ //Analizador
         return name;
     }
