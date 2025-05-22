@@ -2,13 +2,16 @@ package model;
 
 import java.util.ArrayList;
 
+import exceptions.CollectableNotFoundException;
+import exceptions.ThereIsNoTrainerException;
+
 public class Controller {
 
     private ArrayList<Collectable> collection;
 
     public Controller() {
         collection = new ArrayList<Collectable>();
-        testInfo();        
+        testInfo();
     }
 
     public void testInfo() {
@@ -16,7 +19,7 @@ public class Controller {
         collection.add(nuevaCarta); // Guardar carta
     }
 
-    //¿Que pasa si el usuario selecciona un valor invalido?
+    // ¿Que pasa si el usuario selecciona un valor invalido?
     public Type calculateType(int selection) {
 
         // return Type.values()[selection-1];
@@ -90,35 +93,36 @@ public class Controller {
 
     }
 
-    //¿Que pasa si no la encuentra?
-    public String getCollectableInfo(String name) {
+    // ¿Que pasa si no la encuentra?
+    public String getCollectableInfo(String name) throws CollectableNotFoundException {
 
         String info = "";
-
         for (Collectable c : collection) {
-
             if (c.getName().equals(name)) {
-
                 info = c.toString();
             }
+        }
 
+        if (info.equals("")) {
+            throw new CollectableNotFoundException();
         }
 
         return info;
 
     }
 
-    public String getCollectablePrice(String name) {
+    public String getCollectablePrice(String name) throws CollectableNotFoundException {
 
         String info = "";
 
         for (Collectable c : collection) {
-
             if (c.getName().equals(name)) {
-
-                info = "El precio es: "+c.calculatePrice();
+                info = "El precio es: " + c.calculatePrice();
             }
+        }
 
+        if (info.equals("")) {
+            throw new CollectableNotFoundException();
         }
 
         return info;
@@ -155,8 +159,8 @@ public class Controller {
 
     }
 
-    //¿Que pasa si no hay entrenadores?
-    public String getLongestDescriptionTrainer() {
+    // ¿Que pasa si no hay entrenadores?
+    public String getLongestDescriptionTrainer() throws ThereIsNoTrainerException{
 
         String info = "El Trainer con la descripcion mas larga es:\n";
         Trainer longestDescriptionTrainer = null;
@@ -173,6 +177,10 @@ public class Controller {
                 }
 
             }
+        }
+
+        if(longestDescriptionTrainer==null){
+            throw new ThereIsNoTrainerException();
         }
 
         return info + longestDescriptionTrainer.toString();

@@ -1,6 +1,10 @@
 package ui;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import exceptions.CollectableNotFoundException;
+import exceptions.ThereIsNoTrainerException;
 import model.Controller;
 
 public class Executable {
@@ -20,16 +24,29 @@ public class Executable {
 
     public void menu() {
 
-        int opt = 0;
+        int opt = -1;
         do {
 
             System.out.println("Bienvenido a PokeCollector");
-            System.out.println("Digite una opcion");
             System.out.println("1. Registrar carta");
             System.out.println("2. Mostrar listado de objetos de la coleccion");
             System.out.println("3. Consultar informacion de un objeto de la coleccion");
+            System.out.println("4. Mostrar Trainer con mayor descripcion");
             System.out.println("0. Salir");
-            opt = input.nextInt(); //¿Que pasa si el usuario digita algo diferente a un numero?
+
+            boolean flag = false;
+
+            while (!flag) {
+                try {
+                    System.out.println("Digite una opcion");
+                    opt = input.nextInt(); // ¿Que pasa si el usuario digita algo diferente a un numero?
+                } catch (InputMismatchException e) {
+                    input.nextLine();
+                    opt = -1;
+                    flag = false;
+                }
+                flag = true;
+            }
 
             switch (opt) {
                 case 1:
@@ -59,6 +76,17 @@ public class Executable {
                 case 3:
                     showCardInfo();
                     break;
+                case 4:
+                    try {
+                        System.out.println(control.getLongestDescriptionTrainer());
+                    } catch (ThereIsNoTrainerException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    break;
+                case 0:
+                    System.out.println("Adios");
+                    break;
 
                 default:
                     System.out.println("Opcion invalida");
@@ -69,16 +97,19 @@ public class Executable {
 
     }
 
-    public void showCardInfo(){
+    public void showCardInfo() {
 
         input.nextLine();
 
         System.out.println("Digite el nombre de la carta");
         String name = input.nextLine();
 
-        System.out.println(control.getCollectableInfo(name));
-
-        System.out.println(control.getCollectablePrice(name));
+        try {
+            System.out.println(control.getCollectableInfo(name));
+            System.out.println(control.getCollectablePrice(name));
+        } catch (CollectableNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
