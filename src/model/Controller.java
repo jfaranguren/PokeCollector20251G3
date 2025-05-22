@@ -8,9 +8,7 @@ public class Controller {
 
     public Controller() {
         collection = new ArrayList<Collectable>();
-        testInfo();
-
-        
+        testInfo();        
     }
 
     public void testInfo() {
@@ -18,6 +16,7 @@ public class Controller {
         collection.add(nuevaCarta); // Guardar carta
     }
 
+    //¿Que pasa si el usuario selecciona un valor invalido?
     public Type calculateType(int selection) {
 
         // return Type.values()[selection-1];
@@ -91,6 +90,7 @@ public class Controller {
 
     }
 
+    //¿Que pasa si no la encuentra?
     public String getCollectableInfo(String name) {
 
         String info = "";
@@ -100,6 +100,23 @@ public class Controller {
             if (c.getName().equals(name)) {
 
                 info = c.toString();
+            }
+
+        }
+
+        return info;
+
+    }
+
+    public String getCollectablePrice(String name) {
+
+        String info = "";
+
+        for (Collectable c : collection) {
+
+            if (c.getName().equals(name)) {
+
+                info = "El precio es: "+c.calculatePrice();
             }
 
         }
@@ -118,7 +135,6 @@ public class Controller {
 
             if (c instanceof Pokemon) {
                 pkmnCount++;
-                // Pokemon temp = (Pokemon)card;
             }
 
             if (c instanceof Energy) {
@@ -139,6 +155,7 @@ public class Controller {
 
     }
 
+    //¿Que pasa si no hay entrenadores?
     public String getLongestDescriptionTrainer() {
 
         String info = "El Trainer con la descripcion mas larga es:\n";

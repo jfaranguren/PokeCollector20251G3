@@ -29,7 +29,7 @@ public class Executable {
             System.out.println("2. Mostrar listado de objetos de la coleccion");
             System.out.println("3. Consultar informacion de un objeto de la coleccion");
             System.out.println("0. Salir");
-            opt = input.nextInt();
+            opt = input.nextInt(); //¿Que pasa si el usuario digita algo diferente a un numero?
 
             switch (opt) {
                 case 1:
@@ -77,6 +77,8 @@ public class Executable {
         String name = input.nextLine();
 
         System.out.println(control.getCollectableInfo(name));
+
+        System.out.println(control.getCollectablePrice(name));
 
     }
 
